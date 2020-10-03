@@ -21,6 +21,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <time.h>
+#include <string.h>
 #include "config.h"
 
 #ifdef HAVE_LIBHAMLIB
@@ -48,7 +49,7 @@ static void set_hamlib_log()
 	}
 }
 #else
-static inline void set_hamlib_log(FILE *) { }
+static inline void set_hamlib_log(void) { return; }
 #endif
 
 int log_open(const char *file)

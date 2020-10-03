@@ -1,3 +1,10 @@
+hamfax 0.9
+ * Convert to Qt5
+ * Fix bug in Makefile.am where lrelease and moc points to wrong path
+   on certain systems (Alpine Linux)
+ * Fix bug where set_hamlib_log errors because of incorrect arguments
+   if hamlib is not provided
+
 hamfax 0.8.1
  * Fix checkable entries in options menu
  * Fix hamlib parameters handling

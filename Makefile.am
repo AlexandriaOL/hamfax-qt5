@@ -34,8 +34,8 @@ hamfax_SOURCES = \
         src/hamfax.cpp\
 	$(lib_src)
 
-LIBS+=@Qt4_LIBS@
-hamfax_CXXFLAGS = @Qt4_CFLAGS@ -Wall
+LIBS+=@Qt5_LIBS@
+hamfax_CXXFLAGS = @Qt5_CFLAGS@ -Wall
 hamfax_CPPFLAGS = -DPKGDATADIR=\"$(pkgdatadir)\" -Iinclude/
 
 nodist_hamfax_SOURCES = \
@@ -60,8 +60,10 @@ nodist_hamfax_SOURCES = \
 	src/moc_ToolTipFilter.cpp\
 	src/moc_PTT.cpp
 
+MOC = $(shell ( command -v /usr/lib/qt5/bin/moc ) || (command -v moc) )
+
 moc_%.cpp: %.hpp
-	moc $< -o $@
+	$(MOC) $< -o $@
 
 if USE_LRELEASE
 
@@ -72,7 +74,6 @@ lupdate: $(hamfax_SOURCES)
 	lupdate $(hamfax_SOURCES) -ts po/hamfax_de.ts
 	lupdate $(hamfax_SOURCES) -ts po/hamfax_fr.ts
 
-endif
 
 pkgdata_DATA = doc/hamfax.html $(TRANSLATION)
 
@@ -85,8 +86,12 @@ iconsdir=$(datadir)/icons
 icons_DATA=data/hamfax.svg
 dist_man_MANS=doc/hamfax.1
 
+LRELEASE = $(shell (command -v lrelease) || (command -v /usr/lib/qt5/bin/lrelease))
+
 .ts.qm:
 	$(LRELEASE) $< -qm $@
+
+endif
 
 # create ChangeLog file from git log
 dist-hook: ChangeLog

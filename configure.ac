@@ -18,7 +18,7 @@ dnl Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 dnl
 dnl Process this file with autoconf to produce a configure script.
 
-AC_INIT(hamfax, 0.8.1, cschmitt@users.sourceforge.net)
+AC_INIT(hamfax, 0.9, cschmitt@users.sourceforge.net)
 AM_INIT_AUTOMAKE($PACKAGE_NAME, $PACKAGE_VERSION)
 AM_CONFIG_HEADER(include/config.h)
 
@@ -28,7 +28,7 @@ AM_PROG_CC_C_O
 AC_PROG_INSTALL
 
 PKG_PROG_PKG_CONFIG
-PKG_CHECK_MODULES([Qt4], [QtCore QtGui])
+PKG_CHECK_MODULES([Qt5], [Qt5Core Qt5Widgets])
 
 AH_TEMPLATE(USE_FILE, [Build with support for audio files.])
 AC_CHECK_LIB(audiofile, afOpenFile,
